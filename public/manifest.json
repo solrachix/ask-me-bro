@@ -1,0 +1,32 @@
+{
+  "name": "Ask Me Bro",
+  "short_name": "solrachix",
+  "description": "Olá eu sou Carlos Miguel/solrachix, Programador full-stack, apaixonado por tecnologia.",
+  "theme_color": "#4347FE",
+  "background_color": "#121214",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
