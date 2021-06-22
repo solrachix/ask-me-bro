@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useTransition, animated, config } from 'react-spring'
 
@@ -10,6 +10,7 @@ interface Props {
 
 export const PageTransition = ({ children }: Props): ReactElement => {
   const router = useRouter()
+  const [isBrowser, setIsBrowser] = useState(false)
 
   const transitions = useTransition(router, router => router.pathname, {
     from: { opacity: 0, transform: 'translateX(-1000px)' },
@@ -17,23 +18,29 @@ export const PageTransition = ({ children }: Props): ReactElement => {
     leave: { opacity: 0, transform: 'translateX(200px)' },
     config: config.stiff
   })
+
+  useEffect(() => {
+    setIsBrowser(true)
+  }, [])
+
   return (
     <>
-      {transitions.map(({ item, props: style, key }) => {
-        if (!item.components) {
-          return null
-        }
+      {isBrowser &&
+        transitions.map(({ item, props: style, key }) => {
+          if (!item.components) {
+            return null
+          }
 
-        const { Component, props } = item.components[item.pathname]
+          const { Component, props } = item.components[item.pathname]
 
-        return (
-          <Page style={style} key={key}>
-            {children(
-              item ? { Component, pageProps: props && props.pageProps } : {}
-            )}
-          </Page>
-        )
-      })}
+          return (
+            <Page style={style} key={key}>
+              {children(
+                item ? { Component, pageProps: props && props.pageProps } : {}
+              )}
+            </Page>
+          )
+        })}
     </>
   )
 }
