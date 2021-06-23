@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/solrachix/ask-me-bro">
-    <img alt="Ask Me Bro Logo" src="https://github.com/solrachix/ask-me-bro/blob/master/public/images/banner.png" width="50%" />
+    <img alt="Ask Me Bro Logo" src="https://github.com/solrachix/ask-me-bro/blob/master/public/images/icons/logo.svg" width="50%" />
   </a>
 </h1>
 
