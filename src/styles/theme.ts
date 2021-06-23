@@ -13,6 +13,7 @@ export const LightTheme = {
     secondary: '#E73F5D',
     tertiary: '#E559F9',
     shadow: '#050206',
+    logo: '#29292E',
     gradient: 'linear-gradient(139.44deg, #4347FE 0%, #FF59F8 96.19%)',
 
     gray: {
