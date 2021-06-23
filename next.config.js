@@ -14,14 +14,18 @@ module.exports = withPlugins([
       // !! WARN !!
       ignoreBuildErrors: true,
     },
-    env: {
-      SERVER_URL: 'https://solrachix-portfolio-server.herokuapp.com', // http://localhost:3333
-      NEXT_PUBLIC_SITE_URL: 'solrachix.vercel.app'
+    rewrites() {
+      return [
+        {
+          source: '/rooms/:id',
+          destination: '/rooms/room'
+        },
+      ]
     }
   },
   [withPWA, {
     pwa: {
-      // disable: process.env.NODE_ENV === 'development',
+      disable: process.env.NODE_ENV === 'development',
       dest: 'public',
       register: true,
       sw: '/sw.js'
