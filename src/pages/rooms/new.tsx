@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { ReactElement, FormEvent, useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+import { useAuth } from '@/context/auth'
 
 import SEO from '@/components/SEO'
 import Button from '@/components/Button'
 import { Container } from '@/styles/pages/NewRoom'
+import { database } from '@/services/firebase'
+import { useGlobal } from '@/context/global'
 
-export default function Auth(): React.ReactElement {
+export default function Auth(): ReactElement {
+  const router = useRouter()
+  const { user } = useAuth()
+  const [newRoom, setNewRoom] = useState('')
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault()
+
+    if (newRoom.trim() === '') return
+
+    const roomRef = database.ref('rooms')
+
+    const firebaseRoom = await roomRef.push({
+      title: newRoom,
+      authorId: user?.id
+    })
+
+    router.push(`/rooms/${firebaseRoom.key}`)
+  }
+
   return (
     <Container>
       <SEO title="Auth" />
@@ -23,8 +47,13 @@ export default function Auth(): React.ReactElement {
           <img src="/images/icons/logo.svg" alt="Askmebro" />
 
           <h2>Criar uma nova sala</h2>
-          <form action="">
-            <input type="text" placeholder="Nome da sala" />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Nome da sala"
+              value={newRoom}
+              onChange={e => setNewRoom(e.target.value)}
+            />
             <Button type="submit">Criar sala</Button>
           </form>
           <p>

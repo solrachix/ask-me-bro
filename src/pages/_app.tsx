@@ -4,7 +4,6 @@ import { PageTransition } from '@/components/PageTransition'
 
 // import SmoothProvider from '@/lib/react-smooth-scrolling'
 
-import Layout from '@/components/Layout'
 import Context from '@/context'
 
 import '@/services/firebase'
@@ -15,17 +14,15 @@ export default function App({
 }: AppProps) {
   return (
     <Context>
-      <Layout>
-        <PageTransition>
-          {({ Component, pageProps }) => {
-            return Component ? (
-              <Component {...pageProps} />
-            ) : (
-              <SsrComponent {...ssrPageProps} />
-            )
-          }}
-        </PageTransition>
-      </Layout>
+      <PageTransition>
+        {({ Component, pageProps }) => {
+          return Component ? (
+            <Component {...pageProps} />
+          ) : (
+            <SsrComponent {...ssrPageProps} />
+          )
+        }}
+      </PageTransition>
     </Context>
   )
 }
