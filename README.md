@@ -19,7 +19,7 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/solrachix/ask-me-bro?style=for-the-badge&label=Repo%20Size:&labelColor=5965e0&color=5965e0">
 	<br />
   <a aria-label="Completed" href="https://nextlevelweek.com/episodios/react/aula-1/edicao/6">
-    <img src="https://img.shields.io/badge/1/5-5965e0?style=for-the-badge&labelColor=5965e0"></img>
+    <img src="https://img.shields.io/badge/3/5-5965e0?style=for-the-badge&labelColor=5965e0"></img>
   </a>
   <a href="https://github.com/solrachix/ask-me-bro/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/solrachix/ask-me-bro?style=for-the-badge&label=last%20commit:&labelColor=5965e0&color=5965e0">
@@ -153,8 +153,7 @@ Reach out to me at one of the following places!
 ---
 
 ## 📝 License
-
-<img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361?color=rgb(89,101,224)">
+<img alt="License" src="https://img.shields.io/badge/license-MIT-5965e0?style=for-the-badge&labelColor=5965e0&color=5965e0">
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
