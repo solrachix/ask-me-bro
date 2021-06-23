@@ -3,6 +3,9 @@ import React, { useState, FormEvent, useEffect } from 'react'
 
 import { useAuth } from '@/context/auth'
 
+import Avatar from '@/assets/avatar.svg'
+import Like from '@/assets/like.svg'
+
 import Button from '@/components/Button/index'
 import { Container } from '@/styles/pages/Room'
 import { database } from '@/services/firebase'
@@ -122,7 +125,38 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
           </div>
         </form>
 
-        {JSON.stringify(Room.questions)}
+        <div className="comments">
+          {Room.questions !== [] ? (
+            Room.questions.map(question => (
+              <div key={question.id} className="comment">
+                <p>{question.content}</p>
+                <div className="footer">
+                  <div>
+                    {question.author.avatar ? (
+                      <img src={question.author.avatar} alt="avatar " />
+                    ) : (
+                      <Avatar />
+                    )}
+                    <span>{question.author.name}</span>
+                  </div>
+                  <div>
+                    <span>16</span>
+                    <Like />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="no-comments">
+              <img src="/images/empty-questions.svg" alt="empty questions" />
+              <h4>Nenhuma pergunta por aqui...</h4>
+              <p>
+                Envie o código desta sala para seus amigos e comece a responder
+                perguntas!
+              </p>
+            </div>
+          )}
+        </div>
       </main>
     </Container>
   )

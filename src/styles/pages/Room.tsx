@@ -82,5 +82,66 @@ export const Container = styled.div`
         }
       }
     }
+
+    .comments {
+      width: 100%;
+      margin-top: 3.5rem;
+
+      .no-comments {
+        width: 100%;
+        max-width: 284px;
+        margin: auto;
+
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h4,
+        p {
+          text-align: center;
+        }
+      }
+
+      .comment {
+        width: 100%;
+        min-height: 130px;
+        padding: 1.5rem;
+
+        background: ${props => props.theme.colors.gray.details};
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        border-radius: 0.5rem;
+        border: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+
+        resize: vertical;
+
+        svg,
+        img {
+          width: 2rem;
+          border-radius: 10rem;
+
+          --avatar: ${props => props.theme.colors.gray.background};
+        }
+
+        .footer {
+          width: 100%;
+
+          display: flex;
+          justify-content: space-between;
+
+          div {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+          }
+        }
+      }
+    }
   }
 `
