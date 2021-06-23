@@ -1,7 +1,10 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 import { useTheme } from 'styled-components'
 import toast, { Toaster } from 'react-hot-toast'
+
+import Header from './../components/Header/index'
+import Layout from '@/components/Layout'
 
 interface ToastProps {
   type: 'success' | 'error' | 'loading'
@@ -11,11 +14,29 @@ interface ToastProps {
 
 type GlobalContextData = {
   Toast(props: ToastProps): void
+  header: {
+    activated: boolean
+    set(prop: boolean): void
+  }
+  setRoomCode: React.Dispatch<React.SetStateAction<string>>
 }
 
 const GlobalContext = createContext<GlobalContextData>({} as GlobalContextData)
 export const GlobalProvider: React.FC = ({ children }) => {
   const theme = useTheme().colors
+  const [enableHeader, setEnableHeader] = useState(false)
+  const [roomCode, setRoomCode] = useState('')
+
+  const header = {
+    activated: enableHeader,
+    set: (prop: boolean) => {
+      !prop
+        ? document.querySelector('#__next').classList.add('Header-false')
+        : document.querySelector('#__next').classList.remove('Header-false')
+
+      setEnableHeader(prop)
+    }
+  }
 
   const Toast = (props: ToastProps) => {
     const configs = (primary: string = theme.primary.normal) => ({
@@ -49,9 +70,12 @@ export const GlobalProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <GlobalContext.Provider value={{ Toast }}>
+    <GlobalContext.Provider value={{ Toast, header, setRoomCode }}>
       <Toaster position="top-right" reverseOrder={false} />
-      {children}
+      <Layout>
+        {enableHeader && <Header roomCode={roomCode} />}
+        {children}
+      </Layout>
     </GlobalContext.Provider>
   )
 }
