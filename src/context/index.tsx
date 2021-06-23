@@ -7,14 +7,17 @@ import { RouterContextProvider } from '@/hooks/useRouter'
 import { GlobalProvider } from './global'
 
 import GlobalStyle from '@/styles/GlobalStyle'
-import { DarkTheme } from '@/styles/theme'
+import { LightTheme } from '@/styles/theme'
+import { AuthContextProvider } from './auth'
 
 const AppProvider: React.FC = ({ children }) => {
   return (
-    <ThemeProvider theme={DarkTheme}>
+    <ThemeProvider theme={LightTheme}>
       <GlobalStyle />
       <RouterContextProvider>
-        <GlobalProvider>{children}</GlobalProvider>
+        <AuthContextProvider>
+          <GlobalProvider>{children}</GlobalProvider>
+        </AuthContextProvider>
       </RouterContextProvider>
     </ThemeProvider>
   )

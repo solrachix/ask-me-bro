@@ -6,21 +6,12 @@ import React, {
   useContext,
   useCallback
 } from 'react'
-
-
-interface GlobalContextData {
-}
+interface GlobalContextData {}
 
 const GlobalContext = createContext<GlobalContextData>({} as GlobalContextData)
 
 export const GlobalProvider: React.FC = ({ children }) => {
- 
-
-  return (
-    <GlobalContext.Provider value={{  }}>
-      {children}
-    </GlobalContext.Provider>
-  )
+  return <GlobalContext.Provider value={{}}>{children}</GlobalContext.Provider>
 }
 
 // Hook próprio

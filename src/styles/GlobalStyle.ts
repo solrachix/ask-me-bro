@@ -7,9 +7,10 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
   html, body, #__next {
-    background: ${props => props.theme.colors.background.normal};
-    color: ${props => props.theme.colors.text.normal};
+    background: ${props => props.theme.colors.gray.background};
+    color: ${props => props.theme.colors.gray.normal};
 
     overflow-x: visible;
   }
@@ -43,10 +44,10 @@ export default createGlobalStyle`
     outline: none;
 
     text-decoration: none;
-    font-family: 'Nunito', 'Roboto', sans-serif;
+    font: 300 1rem 'Roboto', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    color: ${({ theme }) => theme.colors.text.title};
+    color: ${({ theme }) => theme.colors.gray.dark};
     font-family: 'Poppins', sans-serif;
 
     word-break: break-word;
@@ -78,10 +79,10 @@ export default createGlobalStyle`
   }
   ::-webkit-scrollbar {
     width: 4px;
-    background: ${({ theme }) => theme.colors.background.normal};
+    background: ${({ theme }) => theme.colors.gray.normal};
   }
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => rgba(theme.colors.background.lighter, 1)};
+    background: ${({ theme }) => theme.colors.gray.light};
     border-radius: 50px;
   }
   ::selection {

@@ -7,28 +7,23 @@ export const LightTheme = {
       lighter: '#6866FB',
       light: '#5659EB',
       normal: '#4347FE',
-      dark: '#494CDB',
-      darker: '#3846D4'
+      dark: '#3d3ccf',
+      darker: '#3631a2'
     },
-    secondary: '#E02041',
-    tertiary: '#F0F0F7',
+    secondary: '#E73F5D',
+    tertiary: '#E559F9',
+    shadow: '#050206',
+    gradient: 'linear-gradient(139.44deg, #4347FE 0%, #FF59F8 96.19%)',
 
-    background: {
-      lighter: '#2c323f',
-      light: '#232832',
-      normal: '#F0F0F7',
-      dark: '#161a20',
-      darker: '#12151a'
-    },
-    text: {
-      light: '#D4C2FF',
-      normal: '#9C98A6',
-      dark: '#6A6180',
-      title: '#1a1b1f'
+    gray: {
+      dark: '#737380',
+      normal: '#A8A8B3',
+      light: '#DBDCDD',
+      background: '#F8F8F8',
+      details: '#FEFEFE'
     },
 
     white: '#f7f7f7',
-    grey: 'aeaeb0',
     opaque: '#41414D',
     purple: '#6633cc',
     purpleDark: '#5A4B81',
@@ -49,28 +44,23 @@ export const DarkTheme = {
       lighter: '#6866FB',
       light: '#5659EB',
       normal: '#4347FE',
-      dark: '#494CDB',
-      darker: '#3846D4'
+      dark: '#3d3ccf',
+      darker: '#3631a2'
     },
-    secondary: '#E02041',
-    tertiary: '#2B303A',
+    secondary: '#E73F5D',
+    tertiary: '#E559F9',
+    shadow: '#050206',
+    gradient: 'linear-gradient(139.44deg, #4347FE 0%, #FF59F8 96.19%)',
 
-    background: {
-      lighter: '#1C2028',
-      light: '#171719',
-      normal: '#121214',
-      dark: '#0E0E10',
-      darker: '#000'
-    },
-    text: {
-      light: '#fff',
-      normal: '#7B7B7C',
-      dark: '#6A6180',
-      title: '#E3E6EC'
+    gray: {
+      dark: '#737380',
+      normal: '#A8A8B3',
+      light: '#DBDCDD',
+      background: '#F8F8F8',
+      details: '#FEFEFE'
     },
 
     white: '#f7f7f7',
-    grey: 'aeaeb0',
     opaque: '#41414D',
     purple: '#6633cc',
     purpleDark: '#5A4B81',
@@ -80,6 +70,6 @@ export const DarkTheme = {
     blue: '#2436e8' /** #5659eb */,
     lightBlue: '#3AC5FF',
     red: '#E96379',
-    yellow: '#FFC500'
+    yellow: '#e7de79'
   }
 }

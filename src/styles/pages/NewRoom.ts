@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { rgba } from 'polished'
 
 export const Container = styled.div`
@@ -57,6 +57,11 @@ export const Container = styled.div`
       align-self: center;
     }
 
+    h2 {
+      font-size: 24px;
+      margin: 64px 0 24px;
+    }
+
     form {
       input {
         height: 50px;
@@ -73,6 +78,16 @@ export const Container = styled.div`
       button,
       input {
         width: 100%;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: #737380;
+      margin-top: 16px;
+
+      a {
+        color: ${props => props.theme.colors.tertiary};
       }
     }
   }
