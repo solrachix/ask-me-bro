@@ -86,6 +86,7 @@ export default createGlobalStyle`
     border-radius: 50px;
   }
   ::selection {
+    color: #fff;
     background: ${({ theme }) => theme.colors.primary.normal};
   }
 `

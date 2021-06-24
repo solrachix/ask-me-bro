@@ -12,18 +12,22 @@ export default function useWindowSize(): UseWindowSize {
   })
 
   function getSize() {
+    const window = document.querySelector('#__next') as HTMLDivElement
     return {
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: window.offsetWidth,
+      height: window.offsetHeight
     }
   }
 
   useEffect(() => {
+    const window = document.querySelector('#__next') as HTMLDivElement
+
     function handleResize() {
       console.log(getSize())
       setWindowSize(getSize())
     }
     handleResize()
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
