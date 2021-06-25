@@ -20,6 +20,10 @@ module.exports = withPlugins([
           source: '/rooms/:id',
           destination: '/rooms/room'
         },
+        {
+          source: '/admin/rooms/:id',
+          destination: '/rooms/admin'
+        },
       ]
     }
   },
