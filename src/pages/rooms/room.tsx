@@ -1,15 +1,14 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import React, { useState, FormEvent, useEffect } from 'react'
 
-import { useAuth } from '@/context/auth'
+import { database } from '@/services/firebase'
 
-import Avatar from '@/assets/avatar.svg'
-import Like from '@/assets/like.svg'
+import { useAuth } from '@/context/auth'
+import { useGlobal } from '@/context/global'
 
 import Button from '@/components/Button/index'
+import Question from '@/components/Question'
 import { Container } from '@/styles/pages/Room'
-import { database } from '@/services/firebase'
-import { useGlobal } from '@/context/global'
 
 type FirebaseQuestions = Record<
   string,
@@ -128,23 +127,7 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
         <div className="comments">
           {Room.questions !== [] ? (
             Room.questions.map(question => (
-              <div key={question.id} className="comment">
-                <p>{question.content}</p>
-                <div className="footer">
-                  <div>
-                    {question.author.avatar ? (
-                      <img src={question.author.avatar} alt="avatar " />
-                    ) : (
-                      <Avatar />
-                    )}
-                    <span>{question.author.name}</span>
-                  </div>
-                  <div>
-                    <span>16</span>
-                    <Like />
-                  </div>
-                </div>
-              </div>
+              <Question key={question.id} {...question} />
             ))
           ) : (
             <div className="no-comments">
@@ -186,15 +169,16 @@ export const getServerSideProps: GetServerSideProps<RoomServerSideProps> =
         }
       )
 
-      // console.log(parsedQuestions)
+      console.log({
+        title: databaseRoom.title,
+        questions: parsedQuestions
+      })
+
       Room = {
         title: databaseRoom.title,
         questions: parsedQuestions
       }
     })
-
-    console.log(roomId, Room)
-
     return {
       props: {
         roomId,
