@@ -1,5 +1,6 @@
+import cx from 'classnames'
+
 import Avatar from '@/assets/avatar.svg'
-import Like from '@/assets/like.svg'
 
 import { Container } from './styles'
 
@@ -10,12 +11,25 @@ type QuestionProps = {
     avatar: string
   }
   content: string
-  isAnswered: boolean
-  isHighlighted: boolean
+  isAnswered?: boolean
+  isHighlighted?: boolean
+  children?: React.ReactNode
 }
-function Question({ author, content }: QuestionProps): React.ReactElement {
+function Question({
+  author,
+  content,
+  children,
+  isAnswered = false,
+  isHighlighted = false
+}: QuestionProps): React.ReactElement {
   return (
-    <Container>
+    <Container
+      className={cx(
+        'question',
+        { answered: isAnswered },
+        { highlighted: isHighlighted && !isAnswered }
+      )}
+    >
       <p>{content}</p>
       <div className="footer">
         <div>
@@ -26,10 +40,7 @@ function Question({ author, content }: QuestionProps): React.ReactElement {
           )}
           <span>{author.name}</span>
         </div>
-        <div>
-          <span>16</span>
-          <Like />
-        </div>
+        <div>{children}</div>
       </div>
     </Container>
   )

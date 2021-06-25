@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import { rgba } from 'polished'
 
 export const Container = styled.div`
   width: 100%;
-  min-height: 130px;
+  min-height: 110px;
   padding: 1.5rem;
   margin-bottom: 1rem;
 
@@ -35,10 +36,44 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
 
-    div {
+    div,
+    button {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       gap: 1rem;
     }
+
+    button {
+      background: transparent;
+      border: 0;
+
+      cursor: pointer;
+      transition: all 0.4s;
+
+      &.liked {
+        color: ${props => props.theme.colors.primary.normal};
+
+        svg {
+          fill: ${props => props.theme.colors.primary.normal};
+
+          path {
+            stroke: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  &.highlighted {
+    background: ${props => rgba(props.theme.colors.primary.normal, 0.1)};
+    border: 1px solid ${props => rgba(props.theme.colors.primary.normal, 0.4)};
+
+    footer .user-info span {
+      color: ${props => props.theme.colors.logo};
+    }
+  }
+
+  &.answered {
+    background: ${props => props.theme.colors.gray.light};
   }
 `

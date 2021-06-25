@@ -1,4 +1,4 @@
-import React, { ReactElement, FormEvent, useState, useEffect } from 'react'
+import React, { ReactElement, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -6,9 +6,8 @@ import { useAuth } from '@/context/auth'
 
 import SEO from '@/components/SEO'
 import Button from '@/components/Button'
-import { Container } from '@/styles/pages/NewRoom'
+import { Container } from '@/styles/pages/rooms/New'
 import { database } from '@/services/firebase'
-import { useGlobal } from '@/context/global'
 
 export default function Auth(): ReactElement {
   const router = useRouter()
@@ -27,7 +26,7 @@ export default function Auth(): ReactElement {
       authorId: user?.id
     })
 
-    router.push(`/rooms/${firebaseRoom.key}`)
+    router.push(`/admin/rooms/${firebaseRoom.key}`)
   }
 
   return (

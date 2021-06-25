@@ -1,17 +1,20 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import React, { useState, FormEvent, useEffect } from 'react'
+import React, { useEffect } from 'react'
+
+import { useRouter } from 'next/router'
 
 import { database } from '@/services/firebase'
 
 import { useAuth } from '@/context/auth'
 import { useGlobal } from '@/context/global'
-
-import Like from '@/assets/like.svg'
-
-import Button from '@/components/Button/index'
-import Question from '@/components/Question'
-import { Container } from '@/styles/pages/rooms/Room'
 import { useRoom } from '@/hooks/useRoom'
+
+import DeleteIcon from '@/assets/delete.svg'
+import CheckIcon from '@/assets/check.svg'
+import AnswerIcon from '@/assets/answer.svg'
+
+import Question from '@/components/Question'
+import { Container } from '@/styles/pages/rooms/Admin'
 
 type FirebaseQuestions = Record<
   string,
@@ -55,9 +58,9 @@ type RoomProps = InferGetServerSidePropsType<
 >
 
 export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
+  const router = useRouter()
   const { user } = useAuth()
   const { Toast, header, setRoomCode } = useGlobal()
-  const [newQuestion, setNewQuestion] = useState('')
   const { questions = Room.questions, title = Room.title } = useRoom(roomId)
 
   useEffect(() => {
@@ -68,96 +71,65 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
     return () => header.set(false)
   }, [])
 
-  async function handleSendQuestion(event: FormEvent) {
-    event.preventDefault()
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date()
+    })
 
-    if (newQuestion.trim() === '') {
-      return
-    }
-
-    if (!user) {
-      Toast({
-        type: 'error',
-        message: 'You must be logged in'
-      })
-    }
-
-    const question = {
-      content: newQuestion,
-      author: {
-        name: user.name,
-        avatar: user.avatar
-      },
-      isHighlighted: false,
-      isAnswered: false
-    }
-
-    await database.ref(`rooms/${roomId}/questions`).push(question)
-
-    setNewQuestion('')
+    router.push('/rooms/new')
   }
 
-  async function handleLikeQuestion(
-    questionId: string,
-    likeId: string | undefined
-  ) {
-    if (likeId) {
-      await database
-        .ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
-        .remove()
-    } else {
-      await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
-        authorId: user?.id
-      })
+  async function handleDeleteQuestion(questionId: string) {
+    if (window.confirm('Tem certeza que deseja excluir essa pergunta?')) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
     }
+  }
+
+  async function handleCheckQuestionAsAnswered(questionId: string) {
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isAnswered: true
+    })
+  }
+
+  async function handleHighlightQuestion(questionId: string) {
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isHighlighted: true
+    })
   }
 
   return (
-    <Container id="page-room">
+    <Container>
       <main>
         <div className="room-title">
           <h1>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
-        <form onSubmit={handleSendQuestion}>
-          <textarea
-            placeholder="O que você quer perguntas?"
-            onChange={event => setNewQuestion(event.target.value)}
-            value={newQuestion}
-          />
-
-          <div className="form-footer">
-            {user ? (
-              <div className="user-info">
-                <img src={user.avatar} alt={user.name} />
-                <span>{user.name}</span>
-              </div>
-            ) : (
-              <span>
-                Para enviar uma pergunta, <button>faça seu login</button>.
-              </span>
-            )}
-            <Button type="submit" disabled={!user}>
-              Enviar pergunta
-            </Button>
-          </div>
-        </form>
-
         <div className="comments">
           {questions !== [] ? (
             questions.map(question => (
               <Question key={question.id} {...question}>
+                {!question.isAnswered && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => handleCheckQuestionAsAnswered(question.id)}
+                    >
+                      <CheckIcon />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleHighlightQuestion(question.id)}
+                    >
+                      <AnswerIcon />
+                    </button>
+                  </>
+                )}
                 <button
-                  className={`${question.likeId ? 'liked' : ''}`}
                   type="button"
-                  aria-label="Marcar como gostei"
-                  onClick={() =>
-                    handleLikeQuestion(question.id, question.likeId)
-                  }
+                  onClick={() => handleDeleteQuestion(question.id)}
                 >
-                  {question.likeCount > 0 && <span>{question.likeCount}</span>}
-                  <Like />
+                  <DeleteIcon />
                 </button>
               </Question>
             ))
