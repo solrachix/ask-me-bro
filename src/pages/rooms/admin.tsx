@@ -64,7 +64,12 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
   const { questions = Room.questions, title = Room.title } = useRoom(roomId)
 
   useEffect(() => {
-    header.set(true)
+    header.set(true, [
+      {
+        title: 'Encerrar sala',
+        onClick: () => handleEndRoom()
+      }
+    ])
 
     setRoomCode(roomId)
 
