@@ -53,7 +53,9 @@ export const Container = styled.div`
     align-items: stretch;
     text-align: center;
 
-    > img {
+    > svg {
+      width: 7.8rem;
+
       align-self: center;
     }
 
@@ -62,8 +64,8 @@ export const Container = styled.div`
         height: 50px;
         border-radius: 8px;
         padding: 0 16px;
-        background: #fff;
-        border: 1px solid #a8a8b3;
+        background: ${props => props.theme.colors.gray.background};
+        border: 1px solid ${props => props.theme.colors.gray.normal};
       }
 
       button {

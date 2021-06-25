@@ -41,6 +41,12 @@ export const Container = styled.div`
       display: flex;
       align-items: flex-end;
       gap: 1rem;
+
+      color: ${props => props.theme.colors.gray.dark};
+
+      &:nth-last-of-type(2) {
+        align-items: center;
+      }
     }
 
     button {
@@ -75,5 +81,6 @@ export const Container = styled.div`
 
   &.answered {
     background: ${props => props.theme.colors.gray.light};
+    opacity: 0.4;
   }
 `

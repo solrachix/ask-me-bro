@@ -12,7 +12,7 @@ export const Container = styled.div`
 
       h1 {
         font-size: 24px;
-        color: #29292e;
+        color: ${props => props.theme.colors.logo};
       }
 
       span {
@@ -34,7 +34,7 @@ export const Container = styled.div`
         border: 0;
         padding: 16px;
         border-radius: 8px;
-        background: #fefefe;
+        background: ${props => props.theme.colors.gray.details};
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
         min-height: 130px;

@@ -2,10 +2,12 @@ import styled from 'styled-components'
 import { rgba } from 'polished'
 
 export const Container = styled.header`
-  --logo: ${props => props.theme.colors.logo};
-
   padding: 24px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid ${props => props.theme.colors.gray.light};
+
+  a svg {
+    width: 7.8rem;
+  }
 
   .content {
     max-width: 1120px;

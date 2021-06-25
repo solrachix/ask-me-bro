@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { rgba } from 'polished'
 
 export const Container = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    img {
+    svg {
       width: 7.8rem;
     }
 
@@ -111,7 +112,7 @@ export const Container = styled.div`
         width: 100%;
 
         border-radius: 2rem;
-        box-shadow: 0px -20px 40px 0px #737380bd;
+        box-shadow: 0px -20px 40px 0px ${props => rgba(props.theme.colors.shadow, 0.4)};
       }
     }
 

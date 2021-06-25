@@ -4,6 +4,7 @@ import Link from 'next/link'
 import SmoothScrolling from '@/lib/react-smooth-scrolling'
 
 import Template from '@/assets/template.svg'
+import Logo from '@/assets/logo.svg'
 
 import SEO from '@/components/SEO'
 import { Container } from '@/styles/pages/Home'
@@ -14,7 +15,7 @@ export default function Home(): React.ReactElement {
       {/* <SmoothScrolling> */}
       <SEO title="Home" />
       <header>
-        <img src="/images/icons/logo.svg" alt="Logo" />
+        <Logo />
         <Link href="/auth">
           <a>Login</a>
         </Link>

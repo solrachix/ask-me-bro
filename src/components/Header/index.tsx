@@ -44,7 +44,9 @@ function Header({ roomCode, menuHeader }: HeaderProps): React.ReactElement {
     <Container>
       <div className="content">
         <Link href="/">
-          <Logo />
+          <a>
+            <Logo />
+          </a>
         </Link>
 
         <div>
@@ -60,7 +62,7 @@ function Header({ roomCode, menuHeader }: HeaderProps): React.ReactElement {
             >
               <li onClick={handleChangeThemeClick}>Alterar tema</li>
 
-              {menuHeader.map(menu => (
+              {menuHeader?.map(menu => (
                 <li key={menu.title} onClick={menu.onClick}>
                   {menu.title}
                 </li>

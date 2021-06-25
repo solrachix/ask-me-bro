@@ -12,7 +12,7 @@ export const Container = styled.div`
 
       h1 {
         font-size: 24px;
-        color: #29292e;
+        color: ${props => props.theme.colors.logo};
       }
 
       span {

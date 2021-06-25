@@ -8,6 +8,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  &:root {    
+    --logo: ${props => props.theme.colors.logo};
+  }
+
   html, body, #__next {
     background: ${props => props.theme.colors.gray.background};
     color: ${props => props.theme.colors.gray.normal};

@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 
 import { useAuth } from '@/context/auth'
 
+import Logo from '@/assets/logo.svg'
+
 import SEO from '@/components/SEO'
 import Button from '@/components/Button'
 import { Container } from '@/styles/pages/rooms/New'
@@ -43,7 +45,7 @@ export default function Auth(): ReactElement {
 
       <main>
         <div className="main-content">
-          <img src="/images/icons/logo.svg" alt="Askmebro" />
+          <Logo alt="Askmebro" />
 
           <h2>Criar uma nova sala</h2>
           <form onSubmit={handleSubmit}>

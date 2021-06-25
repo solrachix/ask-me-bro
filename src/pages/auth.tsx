@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { useAuth } from '@/context/auth'
 import { database } from '@/services/firebase'
 
+import Logo from '@/assets/logo.svg'
+
 import SEO from '@/components/SEO'
 import Button from '@/components/Button'
 import Separator from '@/components/Separator'
@@ -54,7 +56,7 @@ export default function Auth(): React.ReactElement {
 
       <main>
         <div className="main-content">
-          <img src="/images/icons/logo.svg" alt="Askmebro" />
+          <Logo alt="Askmebro" />
           <button onClick={handleCreateRoom} className="create-room">
             <img src="/images/icons/google-icon.svg" alt="Logo do Google" />
             Crie sua sala com o Google
