@@ -6,7 +6,13 @@ export const Container = styled.div`
   align-items: stretch;
   height: 100vh;
 
-  aside {
+  aside.mobile {
+    display: none;
+
+    z-index: 0;
+  }
+
+  aside.desktop {
     flex: 7;
     background: ${props => props.theme.colors.primary.normal};
     color: #fff;
@@ -43,6 +49,8 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    z-index: 5;
   }
 
   .main-content {
@@ -67,10 +75,12 @@ export const Container = styled.div`
     form {
       input {
         height: 50px;
-        border-radius: 8px;
         padding: 0 16px;
-        background: ${props => props.theme.colors.gray.details};
-        border: 1px solid #a8a8b3;
+
+        background: ${props => rgba(props.theme.colors.shadow, 0.25)};
+        border: 1px solid ${props => rgba(props.theme.colors.gray.normal, 0.3)};
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
       }
 
       button {
@@ -89,7 +99,7 @@ export const Container = styled.div`
       margin-top: 16px;
 
       a {
-        color: ${props => props.theme.colors.tertiary};
+        color: ${props => props.theme.colors.primary.normal};
       }
     }
   }
@@ -117,6 +127,24 @@ export const Container = styled.div`
 
     &:hover {
       filter: brightness(0.9);
+    }
+  }
+
+  @media (max-width: 620px) {
+    aside.desktop {
+      display: none;
+    }
+
+    aside.mobile {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      transform: translateX(-33%);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 `

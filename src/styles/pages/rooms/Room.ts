@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  padding: 0 1.5rem;
+
   main {
     max-width: 800px;
     margin: 0 auto;
@@ -59,7 +61,7 @@ export const Container = styled.div`
 
         span {
           margin-left: 8px;
-          color: #29292e;
+          color: ${props => props.theme.colors.logo};
           font-weight: 500;
           font-size: 14px;
         }
@@ -67,7 +69,7 @@ export const Container = styled.div`
 
       > span {
         font-size: 14px;
-        color: #737380;
+        color: ${props => props.theme.colors.gray.normal};
         font-weight: 500;
 
         button {
@@ -101,6 +103,17 @@ export const Container = styled.div`
         h4,
         p {
           text-align: center;
+        }
+
+        h4 {
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-weight: normal;
+          font-size: 0.9rem;
         }
       }
     }

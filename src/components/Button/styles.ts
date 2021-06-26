@@ -19,6 +19,7 @@ export const Container = styled.button`
   transition: filter 0.2s;
 
   img {
+    width: 1.2rem;
     margin-right: 8px;
   }
 

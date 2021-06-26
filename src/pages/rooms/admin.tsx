@@ -69,6 +69,7 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
   } = useRoom(roomId)
 
   useEffect(() => {
+    console.log(questions)
     header.set(true, [
       {
         title: 'Encerrar sala',
@@ -141,7 +142,7 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
         </div>
 
         <div className="comments">
-          {questions !== [] ? (
+          {questions.length > 0 ? (
             questions.map(question => (
               <Question key={question.id} {...question}>
                 {!question.isAnswered && (

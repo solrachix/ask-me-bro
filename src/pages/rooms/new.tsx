@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { useAuth } from '@/context/auth'
+import { useGlobal } from '@/context/global'
 
 import Logo from '@/assets/logo.svg'
 
@@ -14,12 +15,19 @@ import { database } from '@/services/firebase'
 export default function Auth(): ReactElement {
   const router = useRouter()
   const { user } = useAuth()
+  const { Toast } = useGlobal()
   const [newRoom, setNewRoom] = useState('')
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    if (newRoom.trim() === '') return
+    if (newRoom.trim() === '') {
+      Toast({
+        type: 'error',
+        message: 'Digite alguma coisa!'
+      })
+      return
+    }
 
     const roomRef = database.ref('rooms')
 
@@ -34,13 +42,19 @@ export default function Auth(): ReactElement {
   return (
     <Container>
       <SEO title="Auth" />
-      <aside>
+      <aside className="desktop">
         <img
           src="/images/illustration.svg"
           alt="Ilustração simbolizando perguntas e respostas"
         />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
+      </aside>
+      <aside className="mobile">
+        <img
+          src="/images/illustration-mobile.svg"
+          alt="Ilustração simbolizando perguntas e respostas"
+        />
       </aside>
 
       <main>
@@ -58,7 +72,7 @@ export default function Auth(): ReactElement {
             <Button type="submit">Criar sala</Button>
           </form>
           <p>
-            Quer entrar em uma sala existente?
+            Quer entrar em uma sala existente?{' '}
             <Link href="#">
               <a>Clique aqui</a>
             </Link>

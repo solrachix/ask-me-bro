@@ -29,4 +29,10 @@ export const Button = styled.button`
     font-size: 14px;
     font-weight: 500;
   }
+
+  @media (max-width: 620px) {
+    span {
+      display: none;
+    }
+  }
 `

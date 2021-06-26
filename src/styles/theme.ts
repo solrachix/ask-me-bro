@@ -50,12 +50,12 @@ export const DarkTheme = {
     },
     secondary: '#E73F5D',
     tertiary: '#E559F9',
-    shadow: '#050206',
+    shadow: '#0d0d0d',
     logo: '#D1D1D6',
     gradient: 'linear-gradient(139.44deg, #4347FE 0%, #FF59F8 96.19%)',
 
     gray: {
-      dark: '#737380',
+      dark: '#f7f7f7',
       normal: '#D1D1D6',
       light: '#2E2F31',
       background: '#141414',

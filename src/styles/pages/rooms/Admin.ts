@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  padding: 0 1.5rem;
+
   main {
     max-width: 800px;
     margin: 0 auto;
@@ -46,6 +48,17 @@ export const Container = styled.div`
         h4,
         p {
           text-align: center;
+        }
+
+        h4 {
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-weight: normal;
+          font-size: 0.9rem;
         }
       }
     }

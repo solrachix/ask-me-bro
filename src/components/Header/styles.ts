@@ -87,12 +87,13 @@ export const TwitchModal = styled.div`
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 2rem;
+    line-height: 2rem;
     color: ${props => props.theme.colors.logo};
   }
 
   input {
-    width: 80%;
+    width: 100%;
     height: 2rem;
     padding: 2rem;
 
@@ -105,11 +106,30 @@ export const TwitchModal = styled.div`
   }
 
   .buttons {
+    width: 100%;
+
     display: flex;
+    justify-content: space-between;
     gap: 2rem;
 
+    button {
+      width: 100%;
+    }
     button:nth-last-of-type(2) {
+      color: ${props => props.theme.colors.logo};
       background: ${props => props.theme.colors.gray.background};
+    }
+  }
+
+  @media (max-width: 620px) {
+    input {
+      padding: 2rem;
+
+      font-size: 1.4rem;
+    }
+
+    .buttons {
+      gap: 1rem;
     }
   }
 `

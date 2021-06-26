@@ -176,7 +176,7 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
         </form>
 
         <div className="comments">
-          {questions !== [] ? (
+          {questions.length > 0 ? (
             questions.map(question => (
               <Question key={question.id} {...question}>
                 <button

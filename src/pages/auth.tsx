@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-import { useAuth } from '@/context/auth'
 import { database } from '@/services/firebase'
+
+import { useAuth } from '@/context/auth'
+import { useGlobal } from '@/context/global'
 
 import Logo from '@/assets/logo.svg'
 
@@ -13,6 +15,7 @@ import { Container } from '@/styles/pages/Auth'
 
 export default function Auth(): React.ReactElement {
   const router = useRouter()
+  const { Toast } = useGlobal()
   const { user, signInWithGoogle } = useAuth()
   const [roomCode, setRoomCode] = useState('')
 
@@ -29,13 +32,21 @@ export default function Auth(): React.ReactElement {
     event.preventDefault()
 
     if (roomCode.trim() === '') {
+      Toast({
+        type: 'error',
+        message: 'Digite alguma coisa!'
+      })
+
       return
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get()
 
     if (!roomRef.exists()) {
-      alert('Room does not exists.')
+      Toast({
+        type: 'error',
+        message: 'Essa Sala não existe.'
+      })
       return
     }
 
@@ -45,13 +56,19 @@ export default function Auth(): React.ReactElement {
   return (
     <Container>
       <SEO title="Auth" />
-      <aside>
+      <aside className="desktop">
         <img
           src="/images/illustration.svg"
           alt="Ilustração simbolizando perguntas e respostas"
         />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
+      </aside>
+      <aside className="mobile">
+        <img
+          src="/images/illustration-mobile.svg"
+          alt="Ilustração simbolizando perguntas e respostas"
+        />
       </aside>
 
       <main>
@@ -71,7 +88,10 @@ export default function Auth(): React.ReactElement {
               onChange={event => setRoomCode(event.target.value)}
               value={roomCode}
             />
-            <Button type="submit">Entrar na sala</Button>
+            <Button type="submit">
+              <img src="/images/icons/login.svg" alt="Icone de entrar" />
+              Entrar na sala
+            </Button>
           </form>
         </div>
       </main>

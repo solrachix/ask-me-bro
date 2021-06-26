@@ -45,6 +45,7 @@ export const GlobalProvider: React.FC = ({ children }) => {
     const configs = (primary: string = theme.primary.normal) => ({
       icon: props.icon,
       style: {
+        background: theme.gray.background,
         border: `1px solid ${primary}`,
         padding: '16px',
         color: primary

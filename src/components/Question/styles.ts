@@ -29,7 +29,7 @@ export const Container = styled.div`
   }
 
   p {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
   .footer {
     width: 100%;
@@ -48,6 +48,11 @@ export const Container = styled.div`
       &:nth-last-of-type(2) {
         align-items: center;
       }
+    }
+
+    span {
+      font-size: 0.9rem;
+      color: ${props => props.theme.colors.gray.normal};
     }
 
     button {

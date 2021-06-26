@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import { rgba } from 'polished'
 
 const Separator = styled.div.attrs(() => ({ className: 'separator' }))`
   font-size: 14px;
-  color: #a8a8b3;
+  color: ${props => rgba(props.theme.colors.gray.normal, 0.5)};
 
   margin: 32px 0;
   display: flex;
@@ -12,7 +13,7 @@ const Separator = styled.div.attrs(() => ({ className: 'separator' }))`
     content: '';
     flex: 1;
     height: 1px;
-    background: #a8a8b3;
+    background: ${props => rgba(props.theme.colors.gray.normal, 0.5)};
     margin-right: 16px;
   }
 
@@ -20,7 +21,7 @@ const Separator = styled.div.attrs(() => ({ className: 'separator' }))`
     content: '';
     flex: 1;
     height: 1px;
-    background: #a8a8b3;
+    background: ${props => rgba(props.theme.colors.gray.normal, 0.5)};
     margin-left: 16px;
   }
 `
