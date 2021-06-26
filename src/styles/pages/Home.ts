@@ -8,6 +8,21 @@ export const Container = styled.div`
   margin: auto;
   padding-bottom: 10rem;
 
+  filter: drop-shadow(0px 100px 100px rgba(0, 0, 0, 0.5));
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 150vw;
+    height: 150vh;
+
+    background: url('/images/mobile.png') no-repeat;
+    background-size: 100%;
+    filter: drop-shadow(5px 5px 50px ${props => props.theme.colors.shadow})
+      blur(10px);
+
+    z-index: -1;
+  }
   * {
     font-family: 'Poppins', 'roboto';
   }
@@ -100,11 +115,12 @@ export const Container = styled.div`
           rgba(0, 0, 0, 0) 0%,
           ${props => props.theme.colors.gray.background} 114.32%
         );
+        border-radius: 2rem;
       }
 
       svg {
-        --details: ${props => props.theme.colors.gray.details};
-        --background: ${props => props.theme.colors.gray.background};
+        --details: ${props => rgba(props.theme.colors.gray.details, 0.6)};
+        --background: ${props => rgba(props.theme.colors.gray.background, 0.7)};
         --gray-dark: ${props => props.theme.colors.gray.dark};
         --text: ${props => props.theme.colors.logo};
         --line: ${props => props.theme.colors.gray.normal};
@@ -113,6 +129,7 @@ export const Container = styled.div`
 
         border-radius: 2rem;
         box-shadow: 0px -20px 40px 0px ${props => rgba(props.theme.colors.shadow, 0.4)};
+        backdrop-filter: blur(20px);
       }
     }
 
@@ -262,6 +279,15 @@ export const Container = styled.div`
 
       .template-container {
         margin-top: 2rem;
+
+        &:before {
+          display: none;
+
+          border-radius: 0.5rem;
+        }
+        svg {
+          border-radius: 0.5rem;
+        }
       }
 
       .companies {
