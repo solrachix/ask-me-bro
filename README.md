@@ -19,7 +19,7 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/solrachix/ask-me-bro?style=for-the-badge&label=Repo%20Size:&labelColor=5965e0&color=5965e0">
 	<br />
   <a aria-label="Completed" href="https://nextlevelweek.com/episodios/react/aula-1/edicao/6">
-    <img src="https://img.shields.io/badge/3/5-5965e0?style=for-the-badge&labelColor=5965e0"></img>
+    <img src="https://img.shields.io/badge/5/5-5965e0?style=for-the-badge&labelColor=5965e0"></img>
   </a>
   <a href="https://github.com/solrachix/ask-me-bro/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/solrachix/ask-me-bro?style=for-the-badge&label=last%20commit:&labelColor=5965e0&color=5965e0">
@@ -31,7 +31,7 @@
   </a>
 </p>
 <p align="center">
-    <img alt="Ask Me Bro Logo" src="https://github.com/solrachix/ask-me-bro/blob/master/public/images/thumbnail.svg?raw=true" />
+    <img alt="Ask Me Bro Logo" src="https://github.com/solrachix/ask-me-bro/blob/master/public/images/template.svg?raw=true" />
 </p>
 
 ---
@@ -90,14 +90,16 @@ https://github.com/solrachix/ask-me-bro
   - [x] Awesome Readme
   - [x] Techs used
   - [x] Project Setup
-  - [ ] Features
+  - [X] Features
   - [x] Pages Prints
 - [x] Improve Styles
+  - [X] Styled components styling
   - [x] Few adjustments to make the style equal to the layout
   - [x] Add Media queries
   - [x] Create Theme Switcher
   - [x] Create Dark Theme
 - [x] Add PWA Feature
+- [x] Add integration with Twitch
 
 ---
 
