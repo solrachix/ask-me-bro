@@ -290,7 +290,7 @@ export const Container = styled.div`
       }
 
       .card {
-        margin-top: 2rem;
+        margin-top: 10rem;
 
         img {
           width: 100%;
@@ -327,6 +327,14 @@ export const Container = styled.div`
           }
         }
       }
+    }
+  }
+
+  @media (max-width: 320px) {
+    main .card img {
+      width: 100%;
+      right: 0;
+      transform: translateY(-120%);
     }
   }
 `
