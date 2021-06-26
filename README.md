@@ -31,7 +31,7 @@
   </a>
 </p>
 <p align="center">
-    <img alt="Ask Me Bro Logo" src="https://github.com/solrachix/ask-me-bro/blob/master/public/images/template.svg?raw=true" />
+    <img alt="Ask Me Bro Logo" src="https://github.com/solrachix/ask-me-bro/blob/master/public/images/template.png?raw=true" />
 </p>
 
 ---
