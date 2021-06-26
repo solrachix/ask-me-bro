@@ -51,7 +51,7 @@ interface Room {
 
 interface RoomServerSideProps {
   roomId: string
-  Room: Room
+  Room?: Room
 }
 
 type RoomProps = InferGetServerSidePropsType<
@@ -63,13 +63,12 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
   const { user } = useAuth()
   const { Toast, header, setRoomCode } = useGlobal()
   const {
-    questions = Room.questions,
-    title = Room.title,
+    questions = Room?.questions,
+    title = Room?.title,
     twitchChannelName
   } = useRoom(roomId)
 
   useEffect(() => {
-    console.log(questions)
     header.set(true, [
       {
         title: 'Encerrar sala',
@@ -138,11 +137,13 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
       <main>
         <div className="room-title">
           <h1>Sala {title}</h1>
-          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
+          {questions?.length > 0 && (
+            <span>{questions?.length} pergunta(s)</span>
+          )}
         </div>
 
         <div className="comments">
-          {questions.length > 0 ? (
+          {questions?.length > 0 ? (
             questions.map(question => (
               <Question key={question.id} {...question}>
                 {!question.isAnswered && (
@@ -191,7 +192,7 @@ export const getServerSideProps: GetServerSideProps<RoomServerSideProps> =
 
     const roomRef = database.ref(`rooms/${roomId}`)
 
-    let Room: Room | null
+    let Room: Room
 
     roomRef.on('value', room => {
       const databaseRoom = room.val()
@@ -215,10 +216,19 @@ export const getServerSideProps: GetServerSideProps<RoomServerSideProps> =
         questions: parsedQuestions
       }
     })
+
+    if (Room) {
+      return {
+        props: {
+          roomId,
+          Room
+        }
+      }
+    }
+
     return {
       props: {
-        roomId,
-        Room
+        roomId
       }
     }
   }
