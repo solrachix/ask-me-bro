@@ -2,6 +2,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import React, { useState, FormEvent, useEffect } from 'react'
 
 import { database } from '@/services/firebase'
+import TMI from 'tmi.js'
 
 import { useAuth } from '@/context/auth'
 import { useGlobal } from '@/context/global'
@@ -58,7 +59,11 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
   const { user } = useAuth()
   const { Toast, header, setRoomCode } = useGlobal()
   const [newQuestion, setNewQuestion] = useState('')
-  const { questions = Room.questions, title = Room.title } = useRoom(roomId)
+  const {
+    questions = Room.questions,
+    title = Room.title,
+    twitchChannelName
+  } = useRoom(roomId)
 
   useEffect(() => {
     header.set(true)
@@ -67,6 +72,32 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
 
     return () => header.set(false)
   }, [])
+
+  useEffect(() => {
+    if (twitchChannelName) {
+      const client = new TMI.Client({
+        channels: [twitchChannelName]
+      })
+
+      client.connect()
+
+      client.on('message', (channel, tags, message, self) => {
+        console.log(`${tags['display-name']}: ${message}`)
+
+        const question = {
+          content: message,
+          author: {
+            name: tags['display-name'],
+            avatar: ''
+          },
+          isHighlighted: false,
+          isAnswered: false
+        }
+
+        database.ref(`rooms/${roomId}/questions`).push(question)
+      })
+    }
+  }, [twitchChannelName])
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault()

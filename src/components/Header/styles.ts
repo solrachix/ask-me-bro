@@ -71,3 +71,45 @@ export const Container = styled.header`
     }
   }
 `
+export const TwitchModal = styled.div`
+  width: 100%;
+  max-width: 360px;
+  height: 100%;
+  margin: auto;
+
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    width: 6rem;
+  }
+
+  h1 {
+    font-size: 24px;
+    color: ${props => props.theme.colors.logo};
+  }
+
+  input {
+    width: 80%;
+    height: 2rem;
+    padding: 2rem;
+
+    border-radius: 1rem;
+
+    background: ${props => props.theme.colors.gray.background};
+    border: 0;
+
+    font-size: 1.4rem;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 2rem;
+
+    button:nth-last-of-type(2) {
+      background: ${props => props.theme.colors.gray.background};
+    }
+  }
+`

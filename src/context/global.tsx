@@ -36,10 +36,6 @@ export const GlobalProvider: React.FC = ({ children }) => {
   const header = {
     activated: enableHeader,
     set: (prop: boolean, menu?: MenuProps[]) => {
-      !prop
-        ? document.querySelector('#__next').classList.add('Header-false')
-        : document.querySelector('#__next').classList.remove('Header-false')
-
       setEnableHeader(prop)
       setMenuHeader(menu)
     }

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { database } from '@/services/firebase'
 import { useAuth } from '@/context/auth'
 
+import TMI from 'tmi.js'
+
 type FirebaseQuestions = Record<
   string,
   {
@@ -38,10 +40,12 @@ type QuestionType = {
 export function useRoom(roomId: string): {
   questions: QuestionType[]
   title: string
+  twitchChannelName: string | undefined
 } {
   const { user } = useAuth()
   const [questions, setQuestions] = useState<QuestionType[]>(undefined)
   const [title, setTitle] = useState(undefined)
+  const [twitchChannelName, setTwitchChannelName] = useState(null)
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`)
@@ -66,6 +70,7 @@ export function useRoom(roomId: string): {
         })
         .sort((a, b) => b.likeCount - a.likeCount)
 
+      setTwitchChannelName(databaseRoom.twitchChannelName)
       setTitle(databaseRoom.title)
       setQuestions(parsedQuestions)
     })
@@ -75,5 +80,5 @@ export function useRoom(roomId: string): {
     }
   }, [roomId, user?.id])
 
-  return { questions, title }
+  return { questions, title, twitchChannelName }
 }

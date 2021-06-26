@@ -22,6 +22,7 @@ export const Container = styled.div`
   svg,
   img {
     width: 2rem;
+    height: 2rem;
     border-radius: 10rem;
 
     --avatar: ${props => props.theme.colors.gray.background};
