@@ -1,9 +1,9 @@
 {
-  "project_name": "Rocketseat Landing Page",
+  "project_name": "Ask Me Bro",
   "type": "web",
   
-  "template_url": "./public/imaged/template.png",
-  "logo_url": "./src/assets/logo.svg",
+  "template_url": "./public/images/thumbnail.svg",
+  "logo_url": "./public/images/icons/logo.svg",
 
   "web": "./"
 }
