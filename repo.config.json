@@ -1,0 +1,9 @@
+{
+  "project_name": "Rocketseat Landing Page",
+  "type": "web",
+  
+  "template_url": "./public/imaged/template.png",
+  "logo_url": "./src/assets/logo.svg",
+
+  "web": "./"
+}
