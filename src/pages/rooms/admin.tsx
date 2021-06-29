@@ -5,11 +5,11 @@ import { useRouter } from 'next/router'
 
 import { database } from '@/services/firebase'
 import TMI from 'tmi.js'
-
 import { useAuth } from '@/context/auth'
 import { useGlobal } from '@/context/global'
 import { useRoom } from '@/hooks/useRoom'
 
+import LikeIcon from '@/assets/like.svg'
 import DeleteIcon from '@/assets/delete.svg'
 import CheckIcon from '@/assets/check.svg'
 import AnswerIcon from '@/assets/answer.svg'
@@ -190,6 +190,11 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
           {questions?.length > 0 ? (
             questions.map(question => (
               <Question key={question.id} {...question}>
+                <button type="button" aria-label="Likes">
+                  {question.likeCount > 0 && <span>{question.likeCount}</span>}
+                  <LikeIcon />
+                </button>
+
                 {!question.isAnswered && (
                   <>
                     <button
