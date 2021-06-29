@@ -39,6 +39,10 @@ type Question = {
   isHighlighted: boolean
   likeCount: number
   likeId: string | undefined
+
+  likes?: {
+    authorId: string
+  }[]
 }
 
 interface Room {
@@ -81,20 +85,58 @@ export default function Room({ Room, roomId }: RoomProps): React.ReactElement {
 
       client.connect()
 
-      client.on('message', (channel, tags, message, self) => {
+      client.on('message', async (channel, tags, message, self) => {
+        const hashtag = '#duvida'
         console.log(`${tags['display-name']}: ${message}`)
 
-        const question = {
-          content: message,
-          author: {
-            name: tags['display-name'],
-            avatar: ''
-          },
-          isHighlighted: false,
-          isAnswered: false
+        if (
+          tags['reply-parent-msg-body']?.includes(hashtag) &&
+          message.includes('#up')
+        ) {
+          const userId = tags['user-id'] || ''
+          const question = await database.ref(`rooms/${roomId}/questions`).get()
+
+          for (const [key, value] of Object.entries(question.val()) as [
+            string,
+            Question
+          ][]) {
+            const isMessage = value.content === tags['reply-parent-msg-body']
+
+            if (isMessage) {
+              const likes = value.likes || {}
+
+              const isLiked = Object.entries(likes)?.find(
+                ([key, like]) => like.authorId === userId
+              )
+
+              if (isLiked) {
+                database
+                  .ref(`rooms/${roomId}/questions/${key}/likes/${isLiked[0]}`)
+                  .remove()
+              } else {
+                database.ref(`rooms/${roomId}/questions/${key}/likes`).push({
+                  authorId: userId
+                })
+              }
+
+              break
+            }
+          }
         }
 
-        database.ref(`rooms/${roomId}/questions`).push(question)
+        if (message.includes(hashtag)) {
+          const question = {
+            content: message,
+            author: {
+              name: tags['display-name'],
+              avatar: ''
+            },
+            isHighlighted: false,
+            isAnswered: false
+          }
+
+          database.ref(`rooms/${roomId}/questions`).push(question)
+        }
       })
     }
   }, [twitchChannelName])
