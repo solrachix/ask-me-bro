@@ -110,7 +110,8 @@ https://github.com/solrachix/ask-me-bro
 - [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Typescript](https://www.typescriptlang.org/) - TypeScript is an open-source language which builds on JavaScript, one of the world’s most used tools, by adding static type definitions.
 - [Next.JS](https://nextjs.org/) - Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
-- [Firebase](https://nextjs.org/) - Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
+- [Firebase](https://firebase.google.com) - Firebase is a Backend-as-a-Service — BaaS — that started as a YC11 startup and grew up into a next-generation app-development platform on Google Cloud Platform.
+
 ---
 
 ## 🤔 Contributing
