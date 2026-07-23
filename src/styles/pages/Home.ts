@@ -16,7 +16,13 @@ export const Container = styled.div`
     width: 150vw;
     height: 150vh;
 
-    background: url('/images/mobile.png') no-repeat;
+    background-image: url('/images/mobile.png');
+    background-image: image-set(
+      url('/images/mobile.avif') type('image/avif'),
+      url('/images/mobile.webp') type('image/webp'),
+      url('/images/mobile.png') type('image/png')
+    );
+    background-repeat: no-repeat;
     background-size: 100%;
     filter: drop-shadow(5px 5px 50px ${props => props.theme.colors.shadow})
       blur(10px);
@@ -143,6 +149,11 @@ export const Container = styled.div`
 
       mix-blend-mode: color-dodge;
       opacity: 0.8;
+
+      picture {
+        display: block;
+        line-height: 0;
+      }
     }
 
     .benefits {
