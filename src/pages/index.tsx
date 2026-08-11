@@ -35,8 +35,16 @@ export default function Home(): React.ReactElement {
         </div>
 
         <div className="companies">
-          <img src="/images/twitch.png" />
-          <img src="/images/youtube.png" />
+          <picture>
+            <source srcSet="/images/twitch.avif" type="image/avif" />
+            <source srcSet="/images/twitch.webp" type="image/webp" />
+            <img src="/images/twitch.png" loading="lazy" decoding="async" alt="Twitch" />
+          </picture>
+          <picture>
+            <source srcSet="/images/youtube.avif" type="image/avif" />
+            <source srcSet="/images/youtube.webp" type="image/webp" />
+            <img src="/images/youtube.png" loading="lazy" decoding="async" alt="YouTube" />
+          </picture>
         </div>
 
         <div className="benefits">
@@ -70,7 +78,11 @@ export default function Home(): React.ReactElement {
             <button>
               <span>Entrar agora</span>
             </button>
-            <img src="/images/saly.png" alt="Homem" />
+            <picture>
+              <source srcSet="/images/saly.avif" type="image/avif" />
+              <source srcSet="/images/saly.webp" type="image/webp" />
+              <img src="/images/saly.png" loading="lazy" decoding="async" alt="Homem" />
+            </picture>
           </div>
         </div>
       </main>

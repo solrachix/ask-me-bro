@@ -2,9 +2,12 @@
   "name": "ask-me-bro",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "start": "next start",
     "export": "next export",
     "generate-sitemap": "node sitemap-generator.js"
